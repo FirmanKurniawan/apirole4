@@ -25,6 +25,10 @@ Route::group(['namespace' => 'Api'], function () {
 Route::group(['middleware' => 'auth:api'], function(){
    Route::group(['middleware' => 'admin'], function(){
    Route::resource('profile', 'ProfileController');
+   Route::resource('adminprof', 'AdminProfController');
+   Route::resource('operatorprof', 'OperatorProfController');
+   Route::resource('customerprof', 'CustomerProfController');
+   Route::resource('clientprof', 'ClientProfController');
    Route::resource('dataadmin', 'DataadminController');
    });
    Route::group(['middleware' => 'admin' && 'customer'], function(){

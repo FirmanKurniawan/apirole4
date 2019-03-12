@@ -77,5 +77,9 @@ class RouteServiceProvider extends ServiceProvider
              Route::model('datacustomer', Datacustomer::class);
              Route::model('dataclient', Dataclient::class);
              Route::model('profile', Profile::class);
+             Route::model('adminprof', AdminProf::class);
+             Route::model('operatorprof', OperatorProf::class);
+             Route::model('customerprof', CustomerProf::class);
+             Route::model('clientprof', CLientProf::class);
     }
 }
