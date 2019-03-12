@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'Api'], function () {
 Route::group(['middleware' => 'auth:api'], function(){
    Route::group(['middleware' => 'admin'], function(){
+   Route::resource('profile', 'ProfileController');
    Route::resource('dataadmin', 'DataadminController');
    });
    Route::group(['middleware' => 'admin' && 'customer'], function(){
