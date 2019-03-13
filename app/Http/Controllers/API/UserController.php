@@ -20,7 +20,7 @@ class UserController extends Controller
         if(Auth::attempt(['noktp' => request('noktp'), 'password' => request('password'), 'status' => 'active'])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('nApp')->accessToken;
-            DB::table('users')->where('email', request('email'))->update(array('api_token' => $success['token']));
+            DB::table('users')->where('noktp', request('noktp'))->update(array('api_token' => $success['token']));
             return response()->json(['success' => $success], $this->successStatus);
         }
         else{
