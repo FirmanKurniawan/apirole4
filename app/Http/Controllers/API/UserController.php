@@ -38,21 +38,31 @@ class UserController extends Controller
             'password' => 'required',
             'c_password' => 'required|same:password',
             'role' => 'required',
-            'tanggal_lahir' => 'required',
-            'fotoktp' => 'required',
-            'alamat' => 'required',
-            'jeniskelamin' => 'required',
-            'fotopribadi' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $user = ClientProf::create($input);
+        
+        $user = User::create([
+            'name' => $request->input('name'),
+            'noktp' => $request->input('noktp'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'c_password' => $request->input('c_password'),
+            'role' => $request->input('role')
+        ]);
+        $user['password'] = bcrypt($user['password']);
+        $clientprof = ClientProf::create([
+            'id_user' => $request->input('id_user'),
+            'nama' => $request->input('nama'),
+            'tanggal_lahir' => $request->input('tanggal_lahir'),
+            'fotoktp' => $request->input('fotoktp'),
+            'alamat' => $request->input('alamat'),
+            'jeniskelamin' => $request->input('jeniskelamin'),
+            'fotopribadi' => $request->input('fotopribadi')
+        ]);
         $success['token'] =  $user->createToken('nApp')->accessToken;
         $success['name'] =  $user->name;
         $success['role'] =  $user->role;
