@@ -27,6 +27,7 @@ class ClientProfItem extends JsonResource
             'api_token' => $this->api_token,
             'remember_token' => $this->remember_token,
             'role' => $this->role,
+            'noktp' => $this->role,
             'status' => $this->status
         ];
     }

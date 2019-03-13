@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\ClientProf;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use DB;
@@ -19,9 +20,9 @@ class UserController extends Controller
     public function login(){
         if(Auth::attempt(['noktp' => request('noktp'), 'password' => request('password'), 'status' => 'active'])){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('nApp')->accessToken;
-            DB::table('users')->where('noktp', request('noktp'))->update(array('api_token' => $success['token']));
-            return response()->json(['success' => $success], $this->successStatus);
+            $success =  $user->createToken('nApp')->accessToken;
+            DB::table('users')->where('noktp', request('noktp'))->update(array('api_token' => $success));
+            return $success;
         }
         else{
             return response()->json(['error'=>'Something Wrong'], 401);
@@ -37,6 +38,11 @@ class UserController extends Controller
             'password' => 'required',
             'c_password' => 'required|same:password',
             'role' => 'required',
+            'tanggal_lahir' => 'required',
+            'fotoktp' => 'required',
+            'alamat' => 'required',
+            'jeniskelamin' => 'required',
+            'fotopribadi' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -46,6 +52,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
+        $user = ClientProf::create($input);
         $success['token'] =  $user->createToken('nApp')->accessToken;
         $success['name'] =  $user->name;
         $success['role'] =  $user->role;
