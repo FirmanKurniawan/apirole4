@@ -14,6 +14,8 @@ class AdminProfCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        'data' => AdminProfItem::collection($this->collection);
+        return [
+            'data' => AdminProfItem::collection($this->collection)
+        ];
     }
 }

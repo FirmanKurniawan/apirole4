@@ -14,6 +14,8 @@ class ClientProfCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        'data' => ClientProfItem::collection($this->collection);
+        return [
+            'data' => ClientProfItem::collection($this->collection)
+        ];
     }
 }

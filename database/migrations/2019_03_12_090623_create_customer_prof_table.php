@@ -13,7 +13,7 @@ class CreateCustomerProfTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_prof', function (Blueprint $table) {
+        Schema::create('customer_profs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_user');
             $table->string('nama');
@@ -40,6 +40,6 @@ class CreateCustomerProfTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_prof');
+        Schema::dropIfExists('customer_profs');
     }
 }

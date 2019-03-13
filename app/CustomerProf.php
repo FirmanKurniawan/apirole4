@@ -23,7 +23,7 @@ class CustomerProf extends Model
     		'api_token' => 'required',
     		'remember_token' => 'required',
     		'role' => 'required',
-    		'status' => 'required',
-    	]
+    		'status' => 'required'
+    	];
     }
 }

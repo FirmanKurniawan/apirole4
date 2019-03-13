@@ -13,7 +13,7 @@ class CreateOperatorProfTable extends Migration
      */
     public function up()
     {
-        Schema::create('operator_prof', function (Blueprint $table) {
+        Schema::create('operator_profs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_user');
             $table->string('nama');
@@ -38,6 +38,6 @@ class CreateOperatorProfTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('operator_prof');
+        Schema::dropIfExists('operator_profs');
     }
 }

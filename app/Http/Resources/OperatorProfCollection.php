@@ -14,6 +14,8 @@ class OperatorProfCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        'data' => OperatorProfItem::collection($this->collection);
+        return [
+            'data' => OperatorProfItem::collection($this->collection)
+        ];
     }
 }

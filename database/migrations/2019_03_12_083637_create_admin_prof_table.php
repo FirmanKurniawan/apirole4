@@ -13,7 +13,7 @@ class CreateAdminProfTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_prof', function (Blueprint $table) {
+        Schema::create('admin_profs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_user');
             $table->string('nama');
@@ -37,6 +37,6 @@ class CreateAdminProfTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin_prof');
+        Schema::dropIfExists('admin_profs');
     }
 }
