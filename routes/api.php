@@ -31,19 +31,19 @@ Route::group(['middleware' => 'auth:api'], function(){
    Route::resource('clientprof', 'ClientProfController');
    Route::resource('dataadmin', 'DataadminController');
    });
-   Route::group(['middleware' => 'admin' && 'customer'], function(){
+   Route::group(['middleware' => ['admin' && 'customer']], function(){
    Route::resource('datacustomer', 'DatacustomerController');
    });
-   Route::group(['middleware' => 'admin' && 'client'], function(){
+   Route::group(['middleware' => ['admin' && 'client']], function(){
    Route::resource('dataclient', 'DataclientController');
    });
-   Route::group(['middleware' => 'operator' && 'admin'], function(){
+   Route::group(['middleware' => ['operator' && 'admin']], function(){
    Route::resource('dataoperator', 'DataoperatorController');
    });
-   Route::group(['middleware' => 'customer' && 'operator'], function(){
+   Route::group(['middleware' => ['customer' && 'operator']], function(){
    Route::resource('datacustomer', 'DatacustomerController');
    });
-   Route::group(['middleware' => 'client' && 'operator'], function(){
+   Route::group(['middleware' => ['client' && 'operator']], function(){
    Route::resource('dataclient', 'DataclientController');
    });
    Route::group(['middleware' => 'customer'], function(){
@@ -70,7 +70,7 @@ Route::get('/errors/customer', function () {
     return view('errors.customer');
 });
 
-Route::get('/errors/clinet', function () {
+Route::get('/errors/client', function () {
     return view('errors.client');
 });
 

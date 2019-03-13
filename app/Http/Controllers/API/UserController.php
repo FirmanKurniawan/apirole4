@@ -50,8 +50,8 @@ class UserController extends Controller
         $success['name'] =  $user->name;
         $success['role'] =  $user->role;
         $user->status;
-        DB::table('users')->where('email', request('email'))->update(array('api_token' => $success['token']));
-        DB::table('users')->where('email', request('email'))->update(array('remember_token' => str_random(40)));
+        DB::table('users')->where('noktp', request('noktp'))->update(array('api_token' => $success['token']));
+        DB::table('users')->where('noktp', request('noktp'))->update(array('remember_token' => str_random(40)));
 
         Mail::to($user->email)->send(new VerifyEmail($user));
         return response()->json(['success'=>$success], $this->successStatus);
