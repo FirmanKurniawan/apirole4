@@ -21,6 +21,6 @@ class OperatorMiddleware
             return $next($request); 
             }
         }
-        return abort(403);
+        return redirect('api/errors/operator');
     }
 }

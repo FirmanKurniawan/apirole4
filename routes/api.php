@@ -58,41 +58,24 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 
+Route::get('/errors/admin', function () {
+    return view('errors.admin');
+});
+
+Route::get('/errors/operator', function () {
+    return view('errors.operator');
+});
+
+Route::get('/errors/customer', function () {
+    return view('errors.customer');
+});
+
+Route::get('/errors/clinet', function () {
+    return view('errors.client');
+});
+
+
     // Route::post('details', 'API\UserController@details');
     // Route::post('colleagues', 'API\ColleagueController@index');
-
-	Route::group(['middleware' => 'auth:api'], function(){
-		Route::group(['middleware' => 'admin'], function(){
-			Route::group(['prefix' => 'admin'] , function(){
-			Route::post('details', 'API\UserController@details');
-			});
-		});
-	});
-
-	Route::group(['middleware' => 'auth:api'], function(){
-		Route::group(['middleware' => 'operator'], function(){
-			Route::group(['prefix' => 'operator'] , function(){
-			Route::get('/','OperatorController@index');
-			Route::post('colleagues', 'API\ColleagueController@index');
-			});
-		});
-	});
-
-	Route::group(['middleware' => 'auth:api'], function(){
-		Route::group(['middleware' => 'customer' && 'operator'], function(){
-			Route::group(['prefix' => 'customer'] , function(){
-			Route::post('customer', 'API\ColleagueController@customer');
-			});
-		});
-	});
-
-	Route::group(['middleware' => 'auth:api'], function(){
-		Route::group(['middleware' => 'client' && 'operator'], function(){
-			Route::group(['prefix' => 'client'] , function(){
-			Route::get('/','OperatorController@index');
-			Route::post('client', 'API\ColleagueController@client');
-			});
-		});
-	});
 
 Route::get('verify', 'SignupController@verify')->name('signup.verify');

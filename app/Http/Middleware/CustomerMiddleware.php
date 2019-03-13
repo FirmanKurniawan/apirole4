@@ -21,6 +21,6 @@ class CustomerMiddleware
             return $next($request); 
             }
         }
-        return abort(403);
+        return redirect('api/errors/customer');
     }
 }

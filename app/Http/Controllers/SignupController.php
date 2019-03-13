@@ -42,13 +42,14 @@ class SignupController extends Controller
     {
         if (empty(request('token'))) {
             // if token is not provided
-            return redirect()->route('signup.form');
+            return 'Token Tidak Ada';
         }
         // descrypt token as email
         $decryptedEmail = Crypt::decrypt(request('token'));
         // find user by email
         $user = User::whereEmail($decryptedEmail)->first();
         if ($user->status == 'active') {
+            return 'Akun Telah Aktif';
             // user is already active, do something
         }
         // otherwise change user status to "activated"
@@ -56,6 +57,6 @@ class SignupController extends Controller
         $user->save();
         // autologin
         Auth::loginUsingId($user->id);
-        return 'SUKSES VERIFIKASI AJG';
+        return 'Verifikasi Berhasil';
     }
 }

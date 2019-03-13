@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role');
             $table->text('api_token')->nullable();
-            $table->string('kode')->unique();
+            $table->string('noktp')->unique();
             $table->enum('status', ['pending', 'active'])->default('pending');
             $table->rememberToken();
             $table->timestamps();

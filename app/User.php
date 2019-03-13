@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'api_token', 'kode', 'status', 'remember_token',
+        'name', 'email', 'password', 'role', 'api_token', 'noktp', 'status', 'remember_token',
     ];
 
     /**
@@ -40,25 +40,25 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        if($this->status == 1) return true;
+        if($this->role == 1) return true;
         return false;
     }
 
     public function isOperator()
     {
-        if($this->status == 2) return true;
+        if($this->role == 2) return true;
         return false;
     }
 
     public function isCustomer()
     {
-        if($this->status == 3) return true;
+        if($this->role == 3) return true;
         return false;
     }
 
     public function isClient()
     {
-        if($this->status == 4) return true;
+        if($this->role == 4) return true;
         return false;
     }
 }

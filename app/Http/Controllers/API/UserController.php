@@ -17,7 +17,7 @@ class UserController extends Controller
     public $successStatus = 200;
 
     public function login(){
-        if(Auth::attempt(['kode' => request('kode'), 'password' => request('password'), 'status' => 'active'])){
+        if(Auth::attempt(['noktp' => request('noktp'), 'password' => request('password'), 'status' => 'active'])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('nApp')->accessToken;
             DB::table('users')->where('email', request('email'))->update(array('api_token' => $success['token']));
@@ -32,7 +32,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'kode' => 'required',
+            'noktp' => 'required',
             'email' => 'required|email',
             'password' => 'required',
             'c_password' => 'required|same:password',
